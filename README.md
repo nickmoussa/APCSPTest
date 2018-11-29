@@ -8,6 +8,6 @@ ___________________
 
 https://daringfireball.net/projects/markdown/syntax
 
-I vim'd
+*I vim'd*
 
 
