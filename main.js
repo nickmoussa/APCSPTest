@@ -1,11 +1,25 @@
+var sq;
+
 function setup() {
-   createCanvas(640, 480); 
+   createCanvas(640, 480);
+    sq = new Snake();
 }
 
-function draw() {
+function draw (){
+    background(0, 255, 0);
+    sq.display();
+    
+}
+
+function Snake() {
     background('#FFFAED');
     var x = width/4;
     var y = height/2;
+    
+    var x = mouseX;
+    var y = mouseY;
+    
+    this.get
     
     //face
     noStroke();
@@ -88,3 +102,4 @@ function draw() {
     triangle(460, 390, 450, 400, 470, 400);
     
 }
+
