@@ -15,7 +15,7 @@ https://daringfireball.net/projects/markdown/syntax
 2. Two
 3. Three
 
-*Second
+* Second
 1. One
 2. Two
 3. Three
