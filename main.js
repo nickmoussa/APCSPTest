@@ -1,27 +1,25 @@
-var sq;
+var sn;
 
 function setup() {
-   createCanvas(640, 480);
-    sq = new Snake();
+   createCanvas(740, 480);
+    sn = new Snake();
 }
 
 function draw (){
     background(0, 255, 0);
-    sq.display();
+    sn.display();
     
 }
 
 function Snake() {
-    background('#FFFAED');
-    var x = width/4;
-    var y = height/2;
-    
     var x = mouseX;
     var y = mouseY;
     
-    this.get
+    this.display = function(){
+        var x = mouseX;
+        var y = mouseY;
     
-    //PUPPY
+        //PUPPY
     //face
     noStroke();
     fill('#52C5DC');
@@ -101,7 +99,7 @@ function Snake() {
     //TongueTip
     noStroke();
     fill('#ff4000');
-    triangle(460, 390, 450, 400, 470, 400);
-    
+    triangle(x+160, y-190, x+150, y-100, x+170, y-100)
+    }
 }
 
