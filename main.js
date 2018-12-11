@@ -1,105 +1,113 @@
 var sn;
+var feed = [];
+var numFood = 8;
+
+var a = [1,2,3];
 
 function setup() {
    createCanvas(740, 480);
     sn = new Snake();
+
+    for(var i = 0; i < numFood; i++){
+        feed.push(new Food(random(width), random(height)));
+    }
 }
 
+
 function draw (){
-    background(0, 255, 0);
+    background(255, 155, 0);
     sn.display();
     
+    for(var i = 0; i < feed.length; i++){
+        feed[i].display();
+    }
+}
+
+function mousePressed(){
+    sn.eat();
+}
+
+function Food(x,y){
+    this.x = x;
+    this.y = y;
+    this.color = color(255, 255, 255);
+    this.foodSize = 50;
+    
+    this.display = function(){
+        fill(this.color);
+        ellipse(this.x, this.y, this.foodSize, this.foodSize);
+    }
 }
 
 function Snake() {
     var x = mouseX;
     var y = mouseY;
+    var diameter = 200;
+    
+    this.getDistance = function(other){
+        var dist = Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
+        return dist;
+    }
+    
+    this.eat = function(){
+        for(var i = 0; i < feed.length; i++){
+            var food = feed[i];
+            var d = this.getDistance(food);
+            var r1 = food.foodSize / 2;
+            var r2 = diameter / 2;
+            if(r1 + r2 > d){
+                feed.splice(i,1);
+            }
+        }
+    }
     
     this.display = function(){
-        var x = mouseX;
-        var y = mouseY;
-    
-        //PUPPY
-    //face
-    noStroke();
-    fill('#52C5DC');
-    ellipse(x, y, 200, 200); 
-    
-    //nose
-    fill('#EFB8D2');
-    ellipse(x, y+30, 64, 64);
-    
-    //eyeLeft
-    fill('#FFFFFF');
-    ellipse(x+42, y-26, 64, 64);
-    
-    //pupilLeft
-    fill('#7FC35E');
-    ellipse (x+42, y-26, 40, 40);
-    
-    //eyeRight
-    fill('#FFFFFF');
-    ellipse(x-42, y-26, 64, 64);
-    
-    //pupilRight
-    fill('#7FC35E');
-    ellipse(x-42, y-26, 40, 40);
-    
-    //earLeft
-    fill('#52C5DC');
-    push();
-    translate(x-100,y-80);
-    rotate(Math.PI / 4);
-    ellipse(0,0, 52, 92);
-    pop();
-    
-    //earRight
-    fill('#52C5DC');
-    push();
-    translate(x+100,y-80);
-    rotate(-Math.PI / 4);
-    ellipse(0,0, 52, 92);
-    pop();
-    
-    //tongue
-    fill('#EE3E36');
-    arc(x-20, y+80, 40, 70, 0, PI+QUARTER_PI, CHORD);
+        x = mouseX;
+        y = mouseY;
     
     //SNAKE
     //Snakeface
     noStroke();
     fill('#009999');
-    ellipse(x+300, y, 200, 200); 
+    ellipse(x, y, 200, 200); 
     
     //Snakeface
     noStroke();
     fill('#33cc33');
-    ellipse(x+300, y+15, 200, 200);
+    ellipse(x, y+15, 200, 200);
     
     //SnakeEyeLeft
     fill('#FFFFFF');
-    ellipse(x+342, y-26, 50, 50);
+    ellipse(x-40, y-26, 50, 50);
     
     //SnakeEyeRight
     fill('#FFFFFF');
-    ellipse(x+260, y-26, 50, 50);
+    ellipse(x+40, y-26, 50, 50);
     
     //RectangleLeft
     fill('#000000');
-    rect(x+322, y-28, 40, 6);
+    rect(x-60, y-28, 40, 6);
     
     //RectangleRight
     fill('#000000');
-    rect(x+239, y-28, 40, 6);
+    rect(x+20, y-28, 40, 6);
     
     //SnakeTongue
     fill('#ff4000');
-    rect(x+296, y+75, 7, 80);
+        if(mouseIsPressed) {
+            rect(x, y+75, 7, 180);
+        } else {
+            rect(x, y+75, 7, 80);
+        }
     
     //TongueTip
     noStroke();
     fill('#ff4000');
-    triangle(x+160, y-190, x+150, y-100, x+170, y-100)
+        if(mouseIsPressed){
+            triangle(x+3, y+235, x-5, y+265, x+12, y+265);   
+        } else {
+            triangle(x+3, y+135, x-5, y+162, x+12, y+162);    
+        }
     }
 }
 
