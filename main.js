@@ -6,6 +6,7 @@ var a = [1,2,3];
 
 function setup() {
    createCanvas(740, 480);
+    noCursor();
     sn = new Snake();
 
     for(var i = 0; i < numFood; i++){
