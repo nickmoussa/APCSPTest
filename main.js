@@ -1,11 +1,11 @@
 var sn;
 var feed = [];
-var numFood = 8;
+var numFood = 10;
 
 var a = [1,2,3];
 
 function setup() {
-   createCanvas(740, 480);
+   createCanvas(windowWidth, windowHeight);
     noCursor();
     sn = new Snake();
 
@@ -14,6 +14,9 @@ function setup() {
     }
 }
 
+function windowResized(){
+    resizeCanvas(windowWidth, windowHeight);
+}
 
 function draw (){
     background(255, 155, 0);
